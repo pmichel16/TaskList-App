@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_app/task_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,14 +37,15 @@ class HomePageState extends State<HomePage> {
                         Text(
                           DateFormat.MMMM().format(DateTime.now()),
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline4,
+                          style: Theme.of(context).primaryTextTheme.headline4,
                         ),
                         Text(
                           "\$24.90",
-                          style: Theme.of(context).textTheme.subtitle1,
+                          style: Theme.of(context).primaryTextTheme.subtitle1,
                         )
                       ]))
                 ])),
+            const TaskList()
           ],
         ));
   }

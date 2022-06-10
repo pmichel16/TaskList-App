@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rounded_expansion_tile/rounded_expansion_tile.dart';
+import 'package:todo_app/task_header.dart';
 
 class TaskList extends StatefulWidget {
   const TaskList({Key? key}) : super(key: key);
@@ -23,59 +25,64 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: ExpansionPanelList(
-        children: [
-          ExpansionPanel(
-            canTapOnHeader: true,
-            headerBuilder: (context, isopen) {
-              return const TaskHeader(title: "Healthier");
-            },
-            body: SizedBox(
-                height: 400,
-                child: ListView(
-                  children: const [Text("Item 1)"), Text("Item 2"), Text("Item 3")],
-                )),
-            isExpanded: _isOpen.elementAt(0),
-          ),
-          ExpansionPanel(
-            canTapOnHeader: true,
-            headerBuilder: (context, isopen) {
-              return const TaskHeader(title: "Smarter");
-            },
-            body: const Text("Now open!"),
-            isExpanded: _isOpen.elementAt(1),
-          ),
-          ExpansionPanel(
-            canTapOnHeader: true,
-            headerBuilder: (context, isopen) {
-              return const TaskHeader(title: "Happier");
-            },
-            body: const Text("Now open!"),
-            isExpanded: _isOpen.elementAt(2),
-          )
-        ],
-        expansionCallback: (i, isOpen) => setState(() {
-          _isOpen[i] = !isOpen;
-        }),
+    return Expanded(
+        child: ListView(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16), children: [
+      Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: RoundedExpansionTile(
+          leading: const Icon(Icons.circle_outlined),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Text('BorderRadius.circular(8)'),
+          subtitle: const Text('In card'),
+          expanded: true,
+          trailing: const Icon(Icons.keyboard_arrow_up),
+          rotateTrailing: true,
+          children: [
+            for (var i = 0; i < 5; i++)
+              ListTile(
+                title: Text('Child $i'),
+              )
+          ],
+        ),
       ),
-    );
-  }
-}
-
-class TaskHeader extends StatelessWidget {
-  final String title;
-
-  const TaskHeader({Key? key, required this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Text(
-      title,
-      style: const TextStyle(
-        fontSize: 18,
+      const Divider(height: 20),
+      Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: RoundedExpansionTile(
+          leading: const Icon(Icons.circle_outlined),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Text('BorderRadius.circular(16)'),
+          subtitle: const Text('In card'),
+          expanded: true,
+          trailing: const Icon(Icons.keyboard_arrow_up),
+          rotateTrailing: true,
+          children: [
+            for (var i = 0; i < 5; i++)
+              ListTile(
+                title: Text('Child $i'),
+              )
+          ],
+        ),
       ),
-    ));
+      const Divider(height: 20),
+      Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: RoundedExpansionTile(
+          leading: const Icon(Icons.circle_outlined),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: const Text('BorderRadius.circular(16)'),
+          subtitle: const Text('In card'),
+          expanded: true,
+          trailing: const Icon(Icons.keyboard_arrow_up),
+          rotateTrailing: true,
+          children: [
+            for (var i = 0; i < 5; i++)
+              ListTile(
+                title: Text('Child $i'),
+              )
+          ],
+        ),
+      ),
+    ]));
   }
 }

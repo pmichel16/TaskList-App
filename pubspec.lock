@@ -207,6 +207,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  rounded_expansion_tile:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "9a2ebbcf22c1828171aaa7a7339a0ccbe436c7ae"
+      url: "https://github.com/pmichel16/rounded_expansion_tile"
+    source: git
+    version: "0.0.13"
   simple_gesture_detector:
     dependency: transitive
     description:
