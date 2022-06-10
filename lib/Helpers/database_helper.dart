@@ -1,4 +1,5 @@
 import 'dart:io' as io;
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -23,8 +24,7 @@ class DatabaseHelper {
 
   void _onCreate(Database db, int version) async {
     // When creating the db, create the table
-    await db
-        .execute('CREATE TABLE DisplayText(id INTEGER PRIMARY KEY, text TEXT)');
+    await db.execute('CREATE TABLE DisplayText(id INTEGER PRIMARY KEY, text TEXT)');
   }
 
   Future<int> create(String text) async {
@@ -34,8 +34,7 @@ class DatabaseHelper {
   }
 
   Future<DisplayText?> getItemById(int id) async {
-    List<Map<String, dynamic>> list =
-        await _db.rawQuery("SELECT * FROM DisplayText WHERE id = ?", [id]);
+    List<Map<String, dynamic>> list = await _db.rawQuery("SELECT * FROM DisplayText WHERE id = ?", [id]);
     if (list.isNotEmpty) {
       return DisplayText.fromMap(list[0]);
     }
@@ -43,8 +42,7 @@ class DatabaseHelper {
   }
 
   Future<int> updateItem(DisplayText item) async {
-    return await _db.update("DisplayText", item.toMap(),
-        where: "id = ?", whereArgs: [item.id]);
+    return await _db.update("DisplayText", item.toMap(), where: "id = ?", whereArgs: [item.id]);
   }
 
   Future<int> deleteItem(int id) async {
@@ -71,6 +69,5 @@ class DisplayText {
     return map;
   }
 
-  factory DisplayText.fromMap(Map<String, dynamic> data) =>
-      DisplayText(id: data['id'], text: data['text']);
+  factory DisplayText.fromMap(Map<String, dynamic> data) => DisplayText(id: data['id'], text: data['text']);
 }

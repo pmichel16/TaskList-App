@@ -1,9 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_simple_dependency_injection/injector.dart';
-
-import 'Helpers/database_helper.dart';
-import 'Helpers/injection.dart';
 
 class TaskList extends StatefulWidget {
   const TaskList({Key? key}) : super(key: key);
@@ -13,7 +8,6 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
-  final String _displayText = "Initial Text";
   final textController = TextEditingController();
   final _isOpen = [true, true, true];
 
@@ -37,10 +31,10 @@ class _TaskListState extends State<TaskList> {
             headerBuilder: (context, isopen) {
               return const TaskHeader(title: "Healthier");
             },
-            body: Container(
+            body: SizedBox(
                 height: 400,
                 child: ListView(
-                  children: [Text("Item 1)"), Text("Item 2"), Text("Item 3")],
+                  children: const [Text("Item 1)"), Text("Item 2"), Text("Item 3")],
                 )),
             isExpanded: _isOpen.elementAt(0),
           ),

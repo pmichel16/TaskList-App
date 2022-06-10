@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,18 +13,38 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
         color: Theme.of(context).backgroundColor,
-        child: Column(children: [
-          Container(
-              height: 300,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)), color: Theme.of(context).primaryColor),
-              child: const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  "January\nWhatever\n12 Goals",
-                  textAlign: TextAlign.center,
-                ),
-              )),
-        ]));
+        child: Column(
+          children: [
+            Container(
+                height: 175,
+                decoration: BoxDecoration(
+                    //boxShadow: [BoxShadow(color: Theme.of(context).primaryColor, blurRadius: 2, spreadRadius: 1)],
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    color: Theme.of(context).primaryColor),
+                child: Column(children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 15),
+                        width: double.infinity,
+                        alignment: Alignment.centerLeft,
+                        child: const Icon(Icons.menu)),
+                  ),
+                  Expanded(
+                      flex: 10,
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                        Text(
+                          DateFormat.MMMM().format(DateTime.now()),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        Text(
+                          "\$24.90",
+                          style: Theme.of(context).textTheme.subtitle1,
+                        )
+                      ]))
+                ])),
+          ],
+        ));
   }
 }
